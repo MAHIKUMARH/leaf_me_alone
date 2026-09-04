@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Leaf Me Alone</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include "partials/starry_nights.html" %}
+    <div class="bg-orb orb-one"></div>
+    <div class="bg-orb orb-two"></div>
+    <div class="bg-orb orb-three"></div>
+
+    <div class="auth-shell">
+        <div class="auth-card glass-card">
+            <div class="auth-brand">
+                <span class="brand-mark">🌿</span>
+                <div>
+                    <p class="eyebrow accent">Welcome back</p>
+                    <h1>Leaf Me Alone</h1>
+                </div>
+            </div>
+
+            {% set is_signup = mode == "signup" %}
+            <p class="auth-subtitle">
+                {% if is_signup %}
+                    Create an account to save your leaf collection.
+                {% else %}
+                    Sign in to access your dashboard and collection.
+                {% endif %}
+            </p>
+
+            <div class="auth-switch" role="tablist" aria-label="Account access">
+                <a href="/login" class="auth-tab{% if not is_signup %} active{% endif %}">Sign In</a>
+                <a href="/signup" class="auth-tab{% if is_signup %} active{% endif %}">Sign Up</a>
+            </div>
+
+            {% if error %}
+                <div class="auth-error">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" action="{% if is_signup %}/signup{% else %}/login{% endif %}" class="login-form">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" autocomplete="username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="{% if is_signup %}new-password{% else %}current-password{% endif %}" required>
+
+                {% if is_signup %}
+                    <label for="confirm_password">Confirm password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Re-enter your password" autocomplete="new-password" required>
+                {% endif %}
+
+                <button type="submit">
+                    {% if is_signup %}🌱 Create account{% else %}🔐 Sign in to dashboard{% endif %}
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

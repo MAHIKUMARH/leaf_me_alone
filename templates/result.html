@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    {% include "partials/starry_nights.html" %}
+    <div class="bg-orb orb-one"></div>
+    <div class="bg-orb orb-two"></div>
+    <div class="bg-orb orb-three"></div>
+
+    <div class="page-shell result-shell">
+        <header class="topbar glass-card compact-topbar">
+            <div class="brand-block">
+                <span class="brand-mark">🌿</span>
+                <div>
+                    <p class="eyebrow">Analysis complete</p>
+                    <h1>Leaf Me Alone</h1>
+                </div>
+            </div>
+            <a href="/" class="soft-link">← Back home</a>
+        </header>
+
+        <div class="container result-container glass-card">
+            <div class="result-head">
+                <div>
+                    <p class="eyebrow accent">Botanical verdict</p>
+                    <h2>{{ leaf_name }} · analyzed by {{ name }} 👋</h2>
+                </div>
+                <span class="tiny-pill">Freshly scanned</span>
+            </div>
+
+            <div class="metric-strip">
+                <div class="metric-box">
+                    <span class="metric-label">Veins detected</span>
+                    <span class="count">{{ vein_count }}</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Leaf status</span>
+                    <span class="status-value">{% if vein_count <= 5 %}Potato energy{% elif vein_count < 2000 %}Steady grower{% elif vein_count < 10000 %}Leaf legend{% else %}Botanical chaos{% endif %}</span>
+                </div>
+            </div>
+
+            {% if vein_count <= 5 %}
+                {% set rarity = "DIVINE" %}
+                {% set emoji = "✨" %}
+                {% set rarity_message = "Absolutely legendary. The leaf gods have chosen you." %}
+                {% set meme_image = "https://i.imgflip.com/30b1gx.jpg" %}
+                {% set meme_title = "When the leaf has potato energy" %}
+                {% set meme_caption = "Few veins detected. Nature chose minimalism." %}
+            {% elif vein_count < 500 %}
+                {% set rarity = "BASE" %}
+                {% set emoji = "🌱" %}
+                {% set rarity_message = "A solid leaf. Nothing suspicious... yet." %}
+                {% set meme_image = "https://i.imgflip.com/1g8my4.jpg" %}
+                {% set meme_title = "The leaf is doing its best" %}
+                {% set meme_caption = "A modest network, but still showing up." %}
+            {% elif vein_count < 2000 %}
+                {% set rarity = "COMMON" %}
+                {% set emoji = "🍃" %}
+                {% set rarity_message = "Not bad. Your leaf is putting in some work." %}
+                {% set meme_image = "https://i.imgflip.com/1ur9b0.jpg" %}
+                {% set meme_title = "A respectable amount of leaf knowledge" %}
+                {% set meme_caption = "The veins have entered the conversation." %}
+            {% elif vein_count < 5000 %}
+                {% set rarity = "RARE" %}
+                {% set emoji = "💎" %}
+                {% set rarity_message = "Okay, now we're getting serious." %}
+                {% set meme_image = "https://i.imgflip.com/1bhk.jpg" %}
+                {% set meme_title = "The vein network is expanding" %}
+                {% set meme_caption = "This leaf has connections." %}
+            {% elif vein_count < 10000 %}
+                {% set rarity = "EPIC" %}
+                {% set emoji = "⚡" %}
+                {% set rarity_message = "This leaf clearly skipped the beginner tutorial." %}
+                {% set meme_image = "https://i.imgflip.com/1o00in.jpg" %}
+                {% set meme_title = "The leaf has entered its expert era" %}
+                {% set meme_caption = "Beginner mode has been permanently disabled." %}
+            {% elif vein_count < 15000 %}
+                {% set rarity = "LEGENDARY" %}
+                {% set emoji = "🔥" %}
+                {% set rarity_message = "Your leaf is absolutely cooking." %}
+                {% set meme_image = "https://i.imgflip.com/1wz1x.jpg" %}
+                {% set meme_title = "The leaf is absolutely cooking" %}
+                {% set meme_caption = "That is an unreasonable number of connections." %}
+            {% elif vein_count <= 20000 %}
+                {% set rarity = "MYTHIC" %}
+                {% set emoji = "👑" %}
+                {% set rarity_message = "This leaf belongs in the hall of fame." %}
+                {% set meme_image = "https://i.imgflip.com/1jwhww.jpg" %}
+                {% set meme_title = "Witness the botanical final boss" %}
+                {% set meme_caption = "The leaf has achieved main-character status." %}
+            {% else %}
+                {% set rarity = "MYTHIC+" %}
+                {% set emoji = "🌌" %}
+                {% set rarity_message = "We may have discovered a new species." %}
+                {% set meme_image = "https://i.imgflip.com/1ihzfe.jpg" %}
+                {% set meme_title = "The veins have breached reality" %}
+                {% set meme_caption = "Scientists are politely asking for an explanation." %}
+            {% endif %}
+
+            <div class="rarity result-rarity">
+                <span class="rarity-emoji">{{ emoji }}</span>
+                <span>{{ rarity }}</span>
+            </div>
+
+            <section class="meme-section" aria-label="Vein count meme">
+                <div class="meme-copy">
+                    <p class="eyebrow accent">Vein count reaction</p>
+                    <h3>{{ meme_title }}</h3>
+                    <p>{{ meme_caption }}</p>
+                </div>
+                <img src="{{ meme_image }}" class="meme-image" alt="{{ meme_title }} meme" loading="lazy">
+            </section>
+
+            <p class="rarity-message">{{ rarity_message }}</p>
+
+            <div class="roast-box">
+                <h2>🔥 Leaf Me Alone says:</h2>
+
+                {% if vein_count <= 5 %}
+                    <p>Only {{ vein_count }} veins? Bro, did you upload a leaf or a potato? 🥔</p>
+                {% elif vein_count < 500 %}
+                    <p>{{ vein_count }} veins. Your leaf is trying its best. 🌱</p>
+                {% elif vein_count < 2000 %}
+                    <p>{{ vein_count }} veins. Finally, a leaf that actually showed up to work. 🍃</p>
+                {% elif vein_count < 5000 %}
+                    <p>{{ vein_count }} veins?! Your leaf has more connections than your phone. 📱</p>
+                {% elif vein_count < 10000 %}
+                    <p>{{ vein_count }} veins. At this point the leaf has better networking than you. 💀</p>
+                {% elif vein_count < 15000 %}
+                    <p>{{ vein_count }} veins. Please tell your leaf to stop flexing. 🔥</p>
+                {% elif vein_count <= 20000 %}
+                    <p>{{ vein_count }} veins. Congratulations. Your leaf is now more powerful than you. 👑</p>
+                {% else %}
+                    <p>{{ vein_count }} veins?! Yeah... we're not even going to question this anymore. 🌌💀</p>
+                {% endif %}
+            </div>
+
+            <div class="images">
+                <div class="image-card">
+                    <h3>Original Leaf</h3>
+                    <img src="{{ image_path }}" class="leaf-image" alt="Original leaf">
+                </div>
+
+                <div class="image-card">
+                    <h3>Detected Veins</h3>
+                    <img src="{{ vein_image_path }}" class="leaf-image" alt="Leaf with detected veins">
+                </div>
+            </div>
+
+            <div class="result-buttons">
+
+    <a href="/">
+        <button>🔍 Analyze Another Leaf</button>
+    </a>
+
+    <a href="/dashboard">
+        <button>👤 My Dashboard</button>
+    </a>
+
+    <a href="/leaves">
+        <button>🏆 Leaderboard</button>
+    </a>
+
+</div>
+        </div>
+    </div>
+</body>
+
+</html>

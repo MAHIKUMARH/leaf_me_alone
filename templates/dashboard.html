@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ name }} — Leaf Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+    {% include "partials/starry_nights.html" %}
+    <div class="bg-orb orb-one"></div>
+    <div class="bg-orb orb-two"></div>
+    <div class="bg-orb orb-three"></div>
+
+    <div class="page-shell dashboard-page">
+        <header class="topbar glass-card compact-topbar">
+            <div class="brand-block">
+                <span class="brand-mark">🌿</span>
+                <div>
+                    <p class="eyebrow">Personal dashboard</p>
+                    <h1>{{ name }}</h1>
+                </div>
+            </div>
+
+            <div class="header-actions compact-actions">
+                <a href="/" class="soft-link">🏠 Home</a>
+                <a href="/leaves" class="soft-link">🏆 Leaderboard</a>
+                <form action="/logout" method="POST" class="inline-form">
+                    <button type="submit" class="ghost-button">Logout</button>
+                </form>
+            </div>
+        </header>
+
+        <div class="dashboard-panel glass-card">
+            <div class="dashboard-header">
+                <div>
+                    <p class="eyebrow accent">Leaf warrior</p>
+                    <h2>Welcome back, {{ name }}.</h2>
+                </div>
+                <span class="user-chip small-chip">🌿 Active collector</span>
+            </div>
+
+
+    <!-- ==========================================
+         STATISTICS
+         ========================================== -->
+
+    <h2>📊 YOUR STATS</h2>
+
+            <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                {{ total_leaves }}
+            </div>
+
+            <div class="stat-label">
+                🌿 Leaves Collected
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                {{ total_veins }}
+            </div>
+
+            <div class="stat-label">
+                🕸️ Total Veins
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                {{ best_count }}
+            </div>
+
+            <div class="stat-label">
+                🏆 Best Leaf
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-number">
+                {{ rarity_emoji }}
+            </div>
+
+            <div class="stat-label">
+                {{ highest_rarity }}
+            </div>
+
+        </div>
+
+            </div>
+
+            <hr>
+
+            <h2>🌱 My Collection</h2>
+
+
+            {% if leaves %}
+
+        <div class="leaf-grid">
+
+            {% for leaf in leaves %}
+
+                {% set count = leaf["vein_count"] %}
+
+
+                <!-- RARITY -->
+
+                {% if count <= 5 %}
+
+                    {% set rarity = "DIVINE" %}
+                    {% set emoji = "✨" %}
+
+                {% elif count < 500 %}
+
+                    {% set rarity = "BASE" %}
+                    {% set emoji = "🌱" %}
+
+                {% elif count < 2000 %}
+
+                    {% set rarity = "COMMON" %}
+                    {% set emoji = "🍃" %}
+
+                {% elif count < 5000 %}
+
+                    {% set rarity = "RARE" %}
+                    {% set emoji = "💎" %}
+
+                {% elif count < 10000 %}
+
+                    {% set rarity = "EPIC" %}
+                    {% set emoji = "⚡" %}
+
+                {% elif count < 15000 %}
+
+                    {% set rarity = "LEGENDARY" %}
+                    {% set emoji = "🔥" %}
+
+                {% elif count <= 20000 %}
+
+                    {% set rarity = "MYTHIC" %}
+                    {% set emoji = "👑" %}
+
+                {% else %}
+
+                    {% set rarity = "MYTHIC+" %}
+                    {% set emoji = "🌌" %}
+
+                {% endif %}
+
+
+                <!-- LEAF CARD -->
+
+                <div class="leaf-card">
+
+                    <img
+                        src="/{{ leaf['image_path'] }}"
+                        alt="Leaf"
+                    >
+
+
+                    <h2>
+                        {{ leaf["leaf_name"] or "Unnamed leaf" }}
+                    </h2>
+
+                    <p class="leaf-owner">by {{ leaf["name"] }}</p>
+
+                    <h3>
+                        🌿 {{ count }} veins
+                    </h3>
+
+
+                    <div class="rarity">
+
+                        {{ emoji }}
+
+                        {{ rarity }}
+
+                    </div>
+
+
+                    <p>
+                        Analyzed:
+                        {{ leaf["created_at"] }}
+                    </p>
+
+
+                    <!-- DELETE -->
+
+                    <form
+                        action="{{ url_for('delete_leaf', leaf_id=leaf['id']) }}"
+                        method="POST"
+                        onsubmit="return confirm('Delete this leaf permanently?');"
+                    >
+
+                        <button
+                            type="submit"
+                            class="delete-button"
+                        >
+                            🗑️ DELETE
+                        </button>
+
+                    </form>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+            {% else %}
+
+                <div class="empty-dashboard">
+                    <h2>🌱 Your collection is empty.</h2>
+                    <p>Go analyze your first leaf!</p>
+                    <a href="/">🔍 Analyze a Leaf</a>
+                </div>
+
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

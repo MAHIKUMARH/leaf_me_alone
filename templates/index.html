@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leaf Me Alone</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    {% include "partials/starry_nights.html" %}
+    <div class="bg-orb orb-one"></div>
+    <div class="bg-orb orb-two"></div>
+    <div class="bg-orb orb-three"></div>
+
+    <div class="page-shell">
+        <header class="topbar glass-card">
+            <div class="brand-block">
+                <span class="brand-mark">🌿</span>
+                <div>
+                    <p class="eyebrow">Botanical intelligence</p>
+                    <h1>Leaf Me Alone</h1>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                {% if username %}
+                    <span class="user-chip">👤 {{ username }}</span>
+                    <a href="/dashboard" class="soft-link">Dashboard</a>
+                    <form action="/logout" method="POST" class="inline-form">
+                        <button type="submit" class="ghost-button">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="/login" class="soft-link">Login</a>
+                {% endif %}
+                <a href="/leaves" class="soft-link">🌱 Full collection</a>
+            </div>
+        </header>
+
+        <main class="home-layout">
+            <section class="hero-panel glass-card">
+                <p class="eyebrow accent">Leaf analytics</p>
+                <h2>Turn one tiny leaf into a wild botanical story.</h2>
+                <p class="hero-copy">
+                    Upload a leaf and let the app measure its vein network with a little scientific flair,
+                    dramatic energy, and absolutely zero drama from the leaf itself.
+                </p>
+
+                <div class="badge-row">
+                    <span>🧬 Vein precision</span>
+                    <span>🍃 Natural beauty</span>
+                    <span>🏆 Leaderboard vibes</span>
+                </div>
+            </section>
+
+            <section class="analyzer-panel glass-card">
+                <h3>Analyze a leaf</h3>
+
+                <form action="/analyze"
+                      method="POST"
+                      enctype="multipart/form-data"
+                      class="leaf-form">
+
+                    <label>Your Name</label>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+                    <label for="leaf-name">Leaf Name</label>
+                    <input
+                        type="text"
+                        id="leaf-name"
+                        name="leaf_name"
+                        placeholder="Give your leaf a name"
+                        maxlength="80"
+                        required
+                    >
+
+                    <label>Upload Leaf Image</label>
+                    <input
+                        type="file"
+                        id="leaf-image"
+                        name="image"
+                        accept="image/*"
+                        class="leaf-file-input"
+                        required
+                    >
+
+                    <label for="leaf-image" class="upload-button">
+                        <span class="upload-button-icon">＋</span>
+                        <span>ADD HERE</span>
+                    </label>
+                    <span class="file-name" id="leaf-file-name">No image selected</span>
+
+                    <button type="submit">
+                        🔍 Analyze Leaf
+                    </button>
+                </form>
+            </section>
+        </main>
+
+        <section class="home-leaderboard glass-card">
+            <div class="card-header">
+                <h2>🏆 Leaderboard</h2>
+                <span class="tiny-pill">Top green minds</span>
+            </div>
+
+            {% if leaderboard %}
+                {% for player in leaderboard %}
+                    <div class="home-leaderboard-row">
+                        <span class="home-rank">
+                            {% if loop.index == 1 %}
+                                🥇
+                            {% elif loop.index == 2 %}
+                                🥈
+                            {% elif loop.index == 3 %}
+                                🥉
+                            {% else %}
+                                #{{ loop.index }}
+                            {% endif %}
+                        </span>
+
+                        <span class="home-player">
+                            {{ player["leaf_name"] or "Unnamed leaf" }}
+                            <small>by {{ player["name"] }}</small>
+                        </span>
+
+                        <span class="home-score">
+                            🌿 {{ player["vein_count"] }}
+                        </span>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="empty-note">No leaves analyzed yet. Be the first! 🌱</p>
+            {% endif %}
+
+            <a href="/leaves" class="collection-link">
+                🌱 View Full Leaf Collection
+            </a>
+        </section>
+
+    </div>
+    <script src="{{ url_for('static', filename='upload-button.js') }}" defer></script>
+</body>
+
+</html>

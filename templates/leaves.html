@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf Me Alone</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    {% include "partials/starry_nights.html" %}
+    <div class="bg-orb orb-one"></div>
+    <div class="bg-orb orb-two"></div>
+    <div class="bg-orb orb-three"></div>
+
+    <div class="page-shell">
+        <header class="topbar glass-card compact-topbar">
+            <div class="brand-block">
+                <span class="brand-mark">🌿</span>
+                <div>
+                    <p class="eyebrow">Leaf collection</p>
+                    <h1>Leaf Me Alone</h1>
+                </div>
+            </div>
+            <a href="/" class="soft-link">← Analyze another leaf</a>
+        </header>
+
+        <section class="leaderboard-section glass-card">
+            <div class="card-header">
+                <h2>🏆 Leaderboard</h2>
+                <span class="tiny-pill">Green elite</span>
+            </div>
+
+            {% if leaderboard %}
+                <div class="leaderboard">
+                    {% for player in leaderboard %}
+                        <div class="leaderboard-row">
+                            <div class="rank">
+                                {% if loop.index == 1 %}
+                                    🥇
+                                {% elif loop.index == 2 %}
+                                    🥈
+                                {% elif loop.index == 3 %}
+                                    🥉
+                                {% else %}
+                                    #{{ loop.index }}
+                                {% endif %}
+                            </div>
+
+                            <div class="player-name">
+                                {{ player["leaf_name"] or "Unnamed leaf" }}
+                                <small>by {{ player["name"] }}</small>
+                            </div>
+                            <div class="player-score">🌿 {{ player["vein_count"] }} veins</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-leaderboard">
+                    <h3>No players yet! 🌱</h3>
+                    <p>Analyze a leaf to enter the leaderboard.</p>
+                </div>
+            {% endif %}
+        </section>
+
+        <section class="collection-panel glass-card">
+            <div class="card-header">
+                <h2>🌱 Leaf Collection</h2>
+                <span class="tiny-pill">All scanned leaves</span>
+            </div>
+
+            {% if leaves %}
+                <div class="leaf-grid">
+                    {% for leaf in leaves %}
+                        {% set count = leaf["vein_count"] %}
+
+                        {% if count <= 5 %}
+                            {% set rarity = "DIVINE" %}
+                            {% set emoji = "✨" %}
+                        {% elif count < 500 %}
+                            {% set rarity = "BASE" %}
+                            {% set emoji = "🌱" %}
+                        {% elif count < 2000 %}
+                            {% set rarity = "COMMON" %}
+                            {% set emoji = "🍃" %}
+                        {% elif count < 5000 %}
+                            {% set rarity = "RARE" %}
+                            {% set emoji = "💎" %}
+                        {% elif count < 10000 %}
+                            {% set rarity = "EPIC" %}
+                            {% set emoji = "⚡" %}
+                        {% elif count < 15000 %}
+                            {% set rarity = "LEGENDARY" %}
+                            {% set emoji = "🔥" %}
+                        {% elif count <= 20000 %}
+                            {% set rarity = "MYTHIC" %}
+                            {% set emoji = "👑" %}
+                        {% else %}
+                            {% set rarity = "MYTHIC+" %}
+                            {% set emoji = "🌌" %}
+                        {% endif %}
+
+                        <div class="leaf-card">
+                            <img src="/{{ leaf['image_path'] }}" alt="Analyzed leaf">
+                            <h2>{{ leaf["leaf_name"] or "Unnamed leaf" }}</h2>
+                            <p class="leaf-owner">by {{ leaf["name"] }}</p>
+                            <h3>🌿 {{ count }} veins</h3>
+                            <div class="rarity">{{ emoji }} {{ rarity }}</div>
+                            <p>Analyzed: {{ leaf["created_at"] }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="empty-note">No leaves have been analyzed yet.</p>
+            {% endif %}
+        </section>
+    </div>
+</body>
+
+</html>
