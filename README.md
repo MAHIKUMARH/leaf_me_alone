@@ -1,586 +1,240 @@
-<<<<<<< HEAD
-LEAF ME ALONE 🌿🎯
+# LEAF ME ALONE 🌿🎯
 
-Basic Details
+## Basic Details
 
-Team Name: THE UNDEAD
+### Team Name: [Your Team Name]
 
-Team Members
+### Team Members
 
-Team Lead: ARJUN V PILLAI - JAIN UNIVERSITY
+* Team Lead: **ARJUN V PILLAI** - [College]
+* Member 2: **MAHIKUMAR H** - [College]
 
-Member: MAHIKUMAR H - JAIN UNIVERSITY
+### Project Description
 
-Project Description
+**LEAF ME ALONE** is a fun web application that analyzes uploaded leaf images and counts their visible veins using classical computer vision. Users can collect leaves, track their best vein count, compete on a leaderboard, and unlock rarity levels based on their leaf's vein count.
 
-LEAF ME ALONE is a computer-vision-based web application that analyzes uploaded leaf images and estimates the number of visible vein structures. The result is stored in a database and turned into a fun, game-like experience with rarity levels, a personal dashboard, leaf collection, and leaderboard.
+### The Problem (that doesn't exist)
 
-Basically, we made botany competitive for absolutely no reason. 🌿🏆
+Nobody knows **which leaf is the most veiny**.
 
-The Problem (that doesn't exist)
+People have been picking up random leaves for centuries without asking the most important question:
 
-People have leaves.
+> **"Bro... how many veins does this thing have?"** 🌿
 
-People have no idea how many veins their leaves have.
+### The Solution (that nobody asked for)
 
-And, more importantly, nobody knows which leaf is the most powerful leaf.
+We built **LEAF ME ALONE**, because apparently counting leaf veins manually wasn't useless enough.
 
-This is clearly a crisis.
+Upload a leaf → OpenCV processes it → veins are detected → the system counts them → you get a rarity level → your score goes onto the leaderboard.
 
-The Solution (that nobody asked for)
+Because every leaf deserves to know how unnecessarily special it is. 🌿🔥
 
-Upload a leaf → let OpenCV stare at it professionally → extract vein-like structures → count them → assign a rarity → save the result → put it on a leaderboard.
+---
 
-Now your leaf has stats, rarity, and a competitive ranking.
+## Technical Details
 
-You're welcome. 🌿💀
+### Technologies/Components Used
 
-Technical Details
+### For Software:
 
-Technologies/Components Used
+* **Python**
+* **Flask**
+* **OpenCV**
+* **NumPy**
+* **scikit-image**
+* **SQLite**
+* **HTML/CSS**
+* **Gunicorn**
+* **Git & GitHub**
+* **Render** for deployment
+* **VS Code** for development
 
-For Software:
+### For Hardware:
 
-Languages used:
+* **Not applicable**
+* This project is completely software-based.
 
-Python
+---
 
-HTML
+## Implementation
 
-CSS
+### For Software:
 
-SQL
+### Installation
 
-Frameworks used:
+Clone the repository:
 
-Flask
+```bash
+git clone https://github.com/MAHIKUMARH/leaf_me_alone.git
+cd leaf_me_alone
+```
 
-Libraries used:
+Create and activate a virtual environment:
 
-OpenCV
+```bash
+python -m venv venv
+```
 
-NumPy
+Windows:
 
-scikit-image
+```powershell
+venv\Scripts\activate
+```
 
-Database:
+Install dependencies:
 
-SQLite
+```bash
+pip install -r requirements.txt
+```
 
-Tools used:
+### Run
 
-VS Code / Code Editor
+```bash
+python app.py
+```
 
-Python Virtual Environment
+The application will run locally at:
 
-Git & GitHub
+```text
+http://127.0.0.1:5000
+```
 
-Web Browser
+### Live Demo
 
-For Hardware:
+[LEAF ME ALONE — Live Website]((https://leaf-me-alone.onrender.com/login))
 
-No dedicated hardware is required.
+---
 
-The project runs on a standard computer/laptop with:
+# Project Documentation
 
-CPU
+## Software
 
-RAM
+### Screenshots
 
-Storage
+![Screenshot1](Add homepage screenshot here)
 
-Camera or existing leaf images
+*Homepage where users enter their name, upload a leaf image, and access the leaderboard and dashboard.*
 
-Internet browser
+![Screenshot2](Add result page screenshot here)
 
-No fancy sensors.
+*Result page showing the uploaded leaf, detected veins, vein count, and rarity classification.*
 
-The leaf does all the suffering. 🌿
+![Screenshot3](Add dashboard screenshot here)
 
-Implementation
+*Personal dashboard showing the user's collected leaves, total veins, best leaf, and highest rarity.*
 
-For Software:
+---
 
-The project uses a classical computer-vision pipeline instead of a trained machine-learning model.
+# Diagrams
 
-Image Processing Pipeline
+![Workflow](Add workflow/architecture diagram here)
 
+*Workflow of LEAF ME ALONE: leaf image upload → image preprocessing → leaf segmentation → vein enhancement → skeletonization and branch detection → vein count → rarity classification → database → dashboard and leaderboard.*
+
+### Processing Pipeline
+
+```text
 Leaf Image
      ↓
 Image Upload
      ↓
-OpenCV Image Reading
+OpenCV Processing
      ↓
-Leaf / Background Isolation
+Leaf Segmentation
      ↓
 CLAHE Enhancement
      ↓
-Morphological Processing
-     ↓
-Vein Extraction
+Black-Hat Vein Extraction
      ↓
 Thresholding
      ↓
 Skeletonization
      ↓
-Branch / Vein Analysis
+Branch Detection
      ↓
 Vein Count
      ↓
-Visualization
+Rarity Classification
+     ↓
+SQLite Database
+     ↓
+Dashboard + Leaderboard
+```
 
-1. Image Upload
+---
 
-The user enters their name and uploads a leaf image through the Flask web interface.
+## For Hardware
 
-2. Leaf Segmentation
+### Schematic & Circuit
 
-The system attempts to isolate the leaf from its background to reduce false detections.
+**Not applicable — LEAF ME ALONE is a software-only project.**
 
-3. CLAHE Enhancement
+### Build Photos
 
-CLAHE (Contrast Limited Adaptive Histogram Equalization) improves local contrast and helps make subtle vein-like structures more visible.
+**Not applicable — no physical hardware or circuit was used.**
 
-4. Vein Extraction
+---
 
-Morphological operations, including black-hat filtering, are used to highlight darker vein-like structures within the leaf.
+# Project Demo
 
-5. Thresholding
-
-The processed image is converted into a representation where likely vein structures can be separated from the surrounding leaf.
-
-6. Skeletonization
-
-Detected vein regions are skeletonized into thin centerlines for easier structural analysis.
-
-7. Branch Analysis
-
-The skeleton is analyzed for meaningful branches and connected structures, while small fragments are filtered to reduce noise.
-
-8. Result Visualization
-
-The detected structures are highlighted and saved as a separate image. The application displays the original leaf, detected-vein visualization, vein count, and rarity.
-
-Installation
-
-Clone the repository:
-
-git clone https://github.com/MAHIKUMARH/leaf_me_alone.git
-cd leaf_me_alone
-
-Create a virtual environment:
-
-python -m venv venv
-
-Activate it on Windows PowerShell:
-
-.\venv\Scripts\Activate.ps1
-
-Install dependencies:
-
-pip install flask opencv-python numpy scikit-image
-
-Run
-
-Start the Flask application:
-
-python app.py
-
-Open:
-
-
-
-Project Documentation
-
-Project Structure
-
-LEAF_ME_ALONE/
-│
-├── app.py
-├── database.db
-│
-├── detector/
-│   └── vein_counter.py
-│
-├── templates/
-│   ├── index.html
-│   ├── result.html
-│   ├── leaves.html
-│   └── dashboard.html
-│
-└── static/
-    ├── style.css
-    └── uploads/
-
-app.py
-
-Handles Flask routes, image uploads, computer-vision execution, SQLite operations, dashboard, leaderboard, and leaf deletion.
-
-detector/vein_counter.py
-
-Contains the computer-vision logic for leaf masking, CLAHE enhancement, vein extraction, skeletonization, branch analysis, vein counting, and visualization.
-
-templates/
-
-Contains the Flask/Jinja pages:
-
-index.html → Home/upload page
-
-result.html → Analysis result
-
-leaves.html → Collection and leaderboard
-
-dashboard.html → Personal dashboard
-
-static/
-
-Contains CSS styling, uploaded leaf images, and generated vein visualizations.
-
-Screenshots (Add at least 3)
-
-Replace these paths with your actual screenshot filenames.
-
-
-
-Home page where the user enters their name, uploads a leaf, and views the leaderboard.
-
-
-
-Analysis result showing the original leaf, detected vein visualization, vein count, and rarity.
-
-
-
-Personal dashboard showing collected leaves, total leaves, total veins, best leaf, and highest rarity.
-
-
-
-Leaf collection showing analyzed leaves and their rarity classifications.
-
-Diagrams
-
-System Architecture
-
-                    ┌──────────────────┐
-                    │      USER        │
-                    │  Name + Leaf     │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │   HTML + CSS     │
-                    │    Interface     │
-                    └────────┬─────────┘
-                             │
-                             ▼
-                    ┌──────────────────┐
-                    │      FLASK       │
-                    │    app.py        │
-                    └────────┬─────────┘
-                             │
-                 ┌───────────┴───────────┐
-                 ▼                       ▼
-        ┌─────────────────┐      ┌─────────────────┐
-        │  OpenCV +       │      │     SQLite      │
-        │  NumPy          │      │    Database     │
-        └────────┬────────┘      └─────────────────┘
-                 │
-                 ▼
-        ┌─────────────────┐
-        │ Vein Detection  │
-        │ & Analysis      │
-        └────────┬────────┘
-                 │
-                 ▼
-        ┌─────────────────┐
-        │ Vein Count +    │
-        │ Visualization   │
-        └────────┬────────┘
-                 │
-                 ▼
-        ┌────────────────────────────┐
-        │ Dashboard / Collection /   │
-        │ Leaderboard / Rarity       │
-        └────────────────────────────┘
-
-Architecture showing how the interface, Flask backend, computer vision module, and SQLite database interact.
-
-Workflow
-
-START
-  │
-  ▼
-Enter Name
-  │
-  ▼
-Upload Leaf
-  │
-  ▼
-Read Image
-  │
-  ▼
-Isolate Leaf
-  │
-  ▼
-Enhance Image
-  │
-  ▼
-Extract Veins
-  │
-  ▼
-Skeletonize
-  │
-  ▼
-Analyze Branches
-  │
-  ▼
-Calculate Vein Count
-  │
-  ▼
-Assign Rarity
-  │
-  ▼
-Save to SQLite
-  │
-  ▼
-Display Result
-  │
-  ├──────────────► Dashboard
-  ├──────────────► Collection
-  └──────────────► Leaderboard
-
-Rarity System
-
-Vein Count
-
-Rarity
-
-1–5
-
-✨ DIVINE
-
-6–499
-
-🌱 BASE
-
-500–1,999
-
-🍃 COMMON
-
-2,000–4,999
-
-💎 RARE
-
-5,000–9,999
-
-⚡ EPIC
-
-10,000–14,999
-
-🔥 LEGENDARY
-
-15,000–20,000
-
-👑 MYTHIC
-
-20,001+
-
-🌌 MYTHIC+
-
-The rarity system is a gamification layer built on top of the computer-vision result.
-
-Database
-
-The project uses SQLite with a leaves table:
-
-leaves
-────────────────────────────
-id
-name
-image_path
-vein_image_path
-vein_count
-created_at
-────────────────────────────
-
-The database stores user names, uploaded image paths, vein counts, generated visualizations, and analysis timestamps.
-
-Dashboard
-
-The personal dashboard provides:
-
-👤 User name
-
-🌿 Total leaves collected
-
-🕸️ Total veins
-
-🏆 Best leaf
-
-✨ Highest rarity
-
-🌱 Personal leaf collection
-
-The dashboard retrieves leaves associated with the entered name.
-
-Note: This is an MVP identity system based on the user's name, not full authentication.
-
-Leaderboard
-
-The leaderboard sorts users by vein count in descending order.
-
-SELECT name, vein_count
-FROM leaves
-ORDER BY vein_count DESC
-LIMIT 10;
-
-Because apparently leaf veins needed ranked matchmaking. 🏆🌿
-
-Schematic & Circuit
-
-Not applicable.
-
-This project is software-only and does not use electronic circuits or embedded hardware.
-
-Build Photos
-
-Not applicable for hardware.
-
-For the software build, screenshots can be included for:
-
-Project folder structure
-
-Flask application running
-
-Computer-vision output
-
-Database/collection
-
-Dashboard
-
-Project Demo
-
-Video
+## Video
 
 [Add your demo video link here]
 
-The demo shows the complete workflow: entering a name, uploading a leaf, analyzing the image, viewing the detected veins and rarity, opening the personal dashboard, viewing the collection, and checking the leaderboard.
+*The demo shows the complete workflow of LEAF ME ALONE: uploading a leaf, detecting its veins, displaying the vein count and rarity, saving the leaf to the collection, and viewing the dashboard and leaderboard.*
 
-Additional Demos
+## Additional Demos
 
-You can include:
+**Live website:**
+[LEAF ME ALONE](https://leaf-me-alone.onrender.com/login)
 
-Live application URL
+**GitHub Repository:**
+[LEAF ME ALONE — GitHub Repository](https://github.com/MAHIKUMARH/leaf_me_alone?utm_source=chatgpt.com)
 
-GitHub repository
+---
 
-Demo screenshots
+# Team Contributions
 
-Computer-vision output examples
+* **ARJUN V PILLAI:** Classical computer vision pipeline, leaf segmentation, vein detection, image-processing experimentation, testing, and debugging.
+* **MAHIKUMAR H:** Flask web application, SQLite database, frontend UI, dashboard, leaf collection, leaderboard, rarity system, deployment, and project integration.
 
-Presentation/PPT
+---
 
-Project documentation
+## Rarity System 🌿
 
-Repository:
+|    Vein Count | Rarity       |
+| ------------: | ------------ |
+|           0–5 | ✨ DIVINE     |
+|         6–499 | 🌱 BASE      |
+|     500–1,999 | 🍃 COMMON    |
+|   2,000–4,999 | 💎 RARE      |
+|   5,000–9,999 | ⚡ EPIC       |
+| 10,000–14,999 | 🔥 LEGENDARY |
+|       15,000+ | 👑 MYTHIC    |
 
-https://github.com/MAHIKUMARH/leaf_me_alone
+---
 
-Challenges Faced
+## Why Classical Computer Vision?
 
-Background Noise
+Instead of using a trained AI model, LEAF ME ALONE uses **traditional image-processing techniques**. This keeps the project lightweight, explainable, and suitable for running without a large training dataset.
 
-Background textures can sometimes be interpreted as vein-like structures.
+The main techniques include:
 
-Lighting
+* Leaf segmentation
+* CLAHE contrast enhancement
+* Morphological black-hat transformation
+* Thresholding
+* Skeletonization
+* Branch/node detection
+* Connected-component analysis
 
-Different lighting conditions can affect contrast and vein visibility.
+---
 
-Skeletonization Noise
+Made with ❤️ at **TinkerHub Useless Projects**
 
-Small image fragments can create unwanted branches.
+![Static Badge](https://img.shields.io/badge/TinkerHub-24?color=%23000000\&link=https%3A%2F%2Fwww.tinkerhub.org%2F)
 
-Vein Count Accuracy
-
-The system detects visual vein-like structures, so the result should not be interpreted as a scientifically exact biological vein count.
-
-Sensitivity vs Noise
-
-Making the detector more sensitive can detect more structures, but can also increase false detections.
-
-At one point the detector basically looked at a leaf and said:
-
-"3,972 veins."
-
-The leaf was not available for comment. 🌿💀
-
-Why Classical Computer Vision?
-
-The project intentionally uses image-processing techniques instead of a trained machine-learning model.
-
-Advantages for this MVP:
-
-No large labeled dataset required
-
-Easier to develop quickly
-
-Easier to debug
-
-More interpretable processing pipeline
-
-Demonstrates fundamental computer-vision techniques
-
-Simple deployment
-
-Future versions could explore machine learning if a sufficiently large and reliable dataset becomes available.
-
-Future Improvements
-
-More robust leaf segmentation
-
-Better handling of different lighting conditions
-
-Perspective correction
-
-Improved vein detection
-
-Quantitative accuracy evaluation
-
-Larger test dataset
-
-Better biological vein-count approximation
-
-Proper user authentication
-
-Cloud deployment
-
-More advanced rarity mechanics
-
-Additional leaderboard statistics
-
-Optional machine-learning-based vein detection
-
-Team Contributions
-
-ARJUN V PILLAI: Computer-vision pipeline development, vein detection logic, image-processing experimentation, testing and debugging.
-
-MAHIKUMAR H: Flask web application, UI/pages, dashboard, collection, leaderboard, rarity system, project integration and testing.
-
-Final Note 🌿
-
-LEAF ME ALONE started with a simple question:
-
-"Can we count the veins on a leaf?"
-
-And somehow became:
-
-"WHO HAS THE MOST POWERFUL LEAF?"
-
-That's progress. 🌿🏆
-
-Upload a leaf. Get its stats. Become unnecessarily competitive.
-=======
-<img width="1280" height="640" alt="git (1)" src="https://github.com/user-attachments/assets/8920b256-2ba8-4988-b824-5351134eb4bd" />
-
+![Static Badge](https://img.shields.io/badge/UselessProjects--26-26?link=https%3A%2F%2Ftinkerhub.org%2Fevents%2F1M8ORET9A1%2Fuseless-projects-3.0)
 
 
 # [Project Name] 🎯
