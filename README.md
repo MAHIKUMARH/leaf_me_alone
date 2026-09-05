@@ -184,7 +184,8 @@ Dashboard + Leaderboard
 
 ## Video
 
-[Add your demo video link here]
+[https://drive.google.com/file/d/1E78jLfpC2tTJOEYo18Yc_7rpGA4Q--Iz/view?usp=sharing
+]
 
 *The demo shows the complete workflow of LEAF ME ALONE: uploading a leaf, detecting its veins, displaying the vein count and rarity, saving the leaf to the collection, and viewing the dashboard and leaderboard.*
 
