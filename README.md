@@ -1,13 +1,14 @@
-# LEAF ME ALONE 🌿🎯
+<img width="1342" height="882" alt="image" src="https://github.com/user-attachments/assets/45c8e3a6-6259-4f9c-8374-4c678ddff97f" /># LEAF ME ALONE 🌿🎯
 
 ## Basic Details
 
-### Team Name: [Your Team Name]
+### Team Name: THE UNDEAD
+
 
 ### Team Members
 
-* Team Lead: **ARJUN V PILLAI** - [College]
-* Member 2: **MAHIKUMAR H** - [College]
+* Team Lead: **ARJUN V PILLAI** - JAIN UNIVERSITY
+* Member 2: **MAHIKUMAR H** - JAIN UNIVERSITY
 
 ### Project Description
 
@@ -111,15 +112,18 @@ http://127.0.0.1:5000
 
 ### Screenshots
 
-![Screenshot1](Add homepage screenshot here)
+<img width="1913" height="896" alt="image" src="https://github.com/user-attachments/assets/081a317c-8985-4c9d-9606-a1665dff51f7" />
+
 
 *Homepage where users enter their name, upload a leaf image, and access the leaderboard and dashboard.*
 
-![Screenshot2](Add result page screenshot here)
+[![Uploading image.png…]
+](Add result page screenshot here)
 
 *Result page showing the uploaded leaf, detected veins, vein count, and rarity classification.*
 
-![Screenshot3](Add dashboard screenshot here)
+![<img width="1472" height="975" alt="image" src="https://github.com/user-attachments/assets/85ed1828-5800-4b41-a647-bdf222bd66ab" />
+](Add dashboard screenshot here)
 
 *Personal dashboard showing the user's collected leaves, total veins, best leaf, and highest rarity.*
 
